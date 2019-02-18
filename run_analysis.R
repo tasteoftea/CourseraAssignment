@@ -1,3 +1,5 @@
+# Execute this code file at your current working directory
+
 # import package dplyr
 library(dplyr)
 
@@ -38,7 +40,7 @@ for (i in 1:dim(mergedy)[1]){
 }
 mergedy$activity<-as.factor(mergedy$activity)
 
-# merge 
+# merge extracted data, subject, activities.
 extracted_data<-cbind(extracted_data_x, merged_subject, mergedy$activity)
 
 # rewrite variables as descriptive variables
@@ -62,4 +64,4 @@ extracted_data_tbl <- group_by(extracted_data_tbl,Subjects, Activities)
 res<-summarize_all(extracted_data_tbl, mean)
 
 # write the result to cwd
-write.table(res,".//result.txt", sep = " ")
+write.table(res,".//result.txt", sep = " ", row.names = FALSE)
